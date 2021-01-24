@@ -26,15 +26,15 @@ else
   exit 1
 fi
 
-# Help
+# Help {{{
 if [ $helpmanual ]; then
   echo "nvim-plug -h"
   echo "Showing manual: "
   exit 0
 fi
-# Help
+# }}}
 
-# Install 
+# Install  {{{
 if [ $install ]; then
 
 # Clone the plugin repository from github
@@ -55,7 +55,9 @@ if [ $install ]; then
     echo "Erro ao clonar repositório $install"
     exit 1
   fi
+  exit 0
 fi
+# }}}
 
 # Deactivating Plugin {{{
 if [ $deactivate ]; then
@@ -84,6 +86,7 @@ if [ $deactivate ]; then
     echo "Plugin não está ativado! (Link não encotrado)"
     exit 1
   fi
+  exit 0
 fi
 # }}}
 
@@ -111,6 +114,7 @@ if [ $activate ]; then
     echo "Plugin $activate não instalado!"
     exit 1
   fi
+  exit 0
 fi
 # }}}
 
@@ -156,33 +160,6 @@ if [ $uninstall ]; then
     echo "Plugin não instalado!"
     exit 1
   fi
+  exit 0
 fi
 #}}}
-
-#if [ "$1" != "" ]; then
-#
-#  # Repo name
-#
-## Clone the plugin repository from github
-#  reponame=$(echo "$1" | cut -d"/" -f2)
-#  #echo $reponame
-#  git clone git@github.com:$1 ~/.config/nvim/git-real/$reponame
-#  if [ $? -eq 0 ]; then
-#
-#    # Activating plugin
-#    ln -s ~/.config/nvim/git-real/$reponame ~/.config/nvim/pack/git-plugins/start/$reponame
-#    #If git clonw works, add plugin on list
-#    if [ $? -eq 0 ]; then
-#      echo "$1" >> ~/.config/nvim/git-real/list
-#      echo "ok!"
-#    fi
-#  else
-#    echo "Erro ao clonar repositório $1"
-#    exit 1
-#  fi
-#
-## If repository name was not given, return error
-#else
-#  echo "Repositório do github não informado!"
-#  exit 1
-#fi
